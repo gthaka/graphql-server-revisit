@@ -43,6 +43,12 @@ const resolvers = {
         game: (parent: { game_id: number }) => {
             return db.games.find((game) => Number(game.id) === Number(parent.game_id));
         }
+    },
+    Mutation: {
+        deleteGame: (_parent: any, args: { id: any }, _context: any, _info: any) => {
+            db.games = db.games.filter((game) => game.id !== args.id);
+            return db.games;
+        }
     }
 };
 
